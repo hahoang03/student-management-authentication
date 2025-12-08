@@ -162,6 +162,33 @@
             <a href="logout" class="btn-logout">Logout</a>
         </div>
     </div>
+                
+     
+    <!-- Show error from URL parameter -->
+    <c:if test="${not empty param.error}">
+        <div class="alert alert-error">
+            ${param.error}
+        </div>
+    </c:if>           
+    
+    <!-- Add button - Admin only -->
+    <c:if test="${sessionScope.role eq 'admin'}">
+        <a href="student?action=new">➕ Add New Student</a>
+    </c:if>
+
+    <!-- In table header -->
+    <c:if test="${sessionScope.role eq 'admin'}">
+        <th>Actions</th>
+    </c:if>
+        
+    <!-- In table rows -->
+    <c:if test="${sessionScope.role eq 'admin'}">
+        <td>
+            <a href="student?action=edit&id=${student.id}">Edit</a>
+            <a href="student?action=delete&id=${student.id}">Delete</a>
+        </td>
+    </c:if>
+                
     
     <div class="container">
         <h1>📚 Student List</h1>
